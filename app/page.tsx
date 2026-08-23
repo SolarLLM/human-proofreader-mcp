@@ -258,7 +258,7 @@ export default async function Home() {
       <hr style={{ border: 0, borderTop: `1px solid ${C.line}`, margin: "56px 0 20px" }} />
 
       <p style={{ fontSize: 13.5, color: C.faint, margin: 0 }}>
-        문제 정의와 한국어 AI 문체 분류 체계에서{" "}
+        한국어 글의 “AI 티”를 알아보는 문제의식과 문체 분류 체계는{" "}
         <a
           href="https://github.com/epoko77-ai/im-not-ai"
           style={{ color: C.muted }}
@@ -267,8 +267,8 @@ export default async function Home() {
         >
           epoko77-ai/im-not-ai
         </a>
-        의 접근에 빚졌습니다. 이 서버는 “AI 티 제거”가 아니라 “읽기 쉬운 글”에 초점을 맞춘 별개의
-        설계이며, 코드를 가져오지 않고 새로 썼습니다.
+        에서 가져왔습니다. 코드는 가져오지 않고 새로 썼습니다. 이 서버는 “AI 티 제거”가 아니라
+        “읽기 쉬운 글”에 초점을 맞춘 별개의 설계입니다.
       </p>
 
       <p style={{ marginTop: 20, fontSize: 13, color: "#a3a3a3" }}>
