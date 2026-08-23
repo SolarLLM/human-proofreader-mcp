@@ -104,6 +104,12 @@ ${TOOL_SUMMARY.map((t) => `- \`${t.name}\` — ${t.desc} (${t.cost})`).join("\n"
 - 사람용 안내: ${base}
 - 기계용 매니페스트: ${base}/mcp.json
 - 소스: https://github.com/SolarLLM/human-proofreader-mcp
+
+## 감사의 말
+
+문제 정의와 한국어 AI 문체 분류 체계에서 https://github.com/epoko77-ai/im-not-ai 의
+접근에 빚졌습니다. 이 서버는 "AI 티 제거"가 아니라 "읽기 쉬운 글"에 초점을 맞춘
+별개의 설계이며, 코드를 가져오지 않고 새로 썼습니다.
 `;
 
   return new Response(body, {

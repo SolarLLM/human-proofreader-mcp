@@ -250,12 +250,28 @@ export default async function Home() {
         </div>
 
         <p style={{ fontSize: 14, color: C.faint, marginTop: 14 }}>
-          두 파일 모두 이 배포본의 실제 주소(<Mono>{endpoint}</Mono>)를 그대로 담고 있어서,
-          AI가 주소를 지어내거나 자리표시자를 그대로 붙여 넣는 일이 없습니다.
+          두 파일에는 이 서버의 주소(<Mono>{endpoint}</Mono>)와 설치 명령이 실제 값으로 들어
+          있습니다. AI가 따로 물어볼 것도, 추측할 것도 없습니다.
         </p>
       </Section>
 
-      <p style={{ marginTop: 56, fontSize: 13, color: "#a3a3a3" }}>
+      <hr style={{ border: 0, borderTop: `1px solid ${C.line}`, margin: "56px 0 20px" }} />
+
+      <p style={{ fontSize: 13.5, color: C.faint, margin: 0 }}>
+        문제 정의와 한국어 AI 문체 분류 체계에서{" "}
+        <a
+          href="https://github.com/epoko77-ai/im-not-ai"
+          style={{ color: C.muted }}
+          target="_blank"
+          rel="noreferrer"
+        >
+          epoko77-ai/im-not-ai
+        </a>
+        의 접근에 빚졌습니다. 이 서버는 “AI 티 제거”가 아니라 “읽기 쉬운 글”에 초점을 맞춘 별개의
+        설계이며, 코드를 가져오지 않고 새로 썼습니다.
+      </p>
+
+      <p style={{ marginTop: 20, fontSize: 13, color: "#a3a3a3" }}>
         Solar Pro 4 · 524K 컨텍스트 · 한국어 원어민 감각. 긴 원고도 쪼개지 않고 한 번에 읽습니다.
         <br />
         <a href="/llms.txt" style={{ color: C.faint }}>
