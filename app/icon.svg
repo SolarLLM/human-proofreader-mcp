@@ -1,0 +1,9 @@
+<!-- 교정 부호 캐럿(∧) — 원고에 무언가를 끼워 넣으라는 편집자의 표시.
+     32px에서도 읽히도록 획을 굵게 두고 요소를 셋으로 줄였다. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#1a1a1a"/>
+  <rect x="7" y="9.5" width="18" height="2.4" rx="1.2" fill="#e7e5e4"/>
+  <rect x="7" y="15" width="11" height="2.4" rx="1.2" fill="#78716c"/>
+  <path d="M10.5 26.5 L16 20 L21.5 26.5" fill="none" stroke="#f97316"
+        stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
