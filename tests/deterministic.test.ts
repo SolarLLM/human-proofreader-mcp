@@ -223,3 +223,22 @@ test("문장을 크게 다시 써도 주입으로 오인하지 않는다", () =>
   const f = checkFidelity({ before, after });
   assert.ok(!f.issues.some((i) => i.code === "content_injected"));
 });
+
+test("짧은 인용이 바뀌어도 채택 불가", () => {
+  // 실측 누락: 「운이 좋았다」(6자)가 최소 길이 8자 문턱에 걸려 통과했다.
+  // 한국어는 조밀해서 6~7자면 이미 한 문장이다.
+  const f = checkFidelity({
+    before: '매출은 늘었다. 한 관계자는 "운이 좋았다"고 말했다.',
+    after: '매출은 늘었다. 한 관계자는 "준비된 결과"라고 말했다.',
+  });
+  assert.equal(f.verdict, "abort");
+  assert.ok(f.issues.some((i) => i.code === "quote_altered"));
+});
+
+test("강조용 짧은 따옴표는 인용으로 보지 않는다", () => {
+  const f = checkFidelity({
+    before: '이번 발표는 "혁신적"이라는 평가를 받았다. 팀이 애썼다. 다음에도 간다.',
+    after: '이번 발표는 혁신적이라는 평가를 받았다. 팀이 애썼다. 다음에도 간다.',
+  });
+  assert.ok(!f.issues.some((i) => i.code === "quote_altered"));
+});

@@ -62,7 +62,14 @@ function numberValues(text: string): Set<string> {
   return out;
 }
 
-function extractQuotes(text: string, minLen = 8): string[] {
+/**
+ * 인용으로 볼 최소 길이.
+ *
+ * 8자로 잡았더니 「운이 좋았다」(6자)가 통째로 다른 말로 바뀌었는데도 통과했다.
+ * 한국어는 조밀해서 6~7자면 이미 한 문장이다. 5자로 낮춰 짧은 실제 인용을
+ * 잡되, 강조용 따옴표("혁신적" 같은 두세 글자)는 계속 제외한다.
+ */
+function extractQuotes(text: string, minLen = 5): string[] {
   const quotes: string[] = [];
   for (const [op, cl] of [
     ["「", "」"],
