@@ -48,7 +48,15 @@ export default async function Home() {
       <p style={{ color: C.accent, fontWeight: 600, letterSpacing: "0.02em", margin: 0 }}>
         Solar Human Proofreader
       </p>
-      <h1 style={{ fontSize: 40, lineHeight: 1.25, margin: "12px 0 8px", letterSpacing: "-0.02em" }}>
+      {/* 고정 40px이면 375px 화면에서 "빨간 펜 / 으로"로 끊겨 네 줄이 된다. */}
+      <h1
+        style={{
+          fontSize: "clamp(26px, 7.2vw, 40px)",
+          lineHeight: 1.25,
+          margin: "12px 0 8px",
+          letterSpacing: "-0.02em",
+        }}
+      >
         사람 편집자가 빨간 펜으로
         <br />
         손본 원고를 돌려드립니다.
@@ -66,6 +74,14 @@ export default async function Home() {
         가 문장을 손보고, 사실·인용·말투가 그대로인지는 코드가 판정합니다. 내용은 더하지도 빼지도
         않습니다.
       </p>
+
+      {/* 무료라는 사실이 페이지 한참 아래에 있으면 아무도 못 본다. 첫 화면에 둔다. */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 22 }}>
+        <Pill strong>하루 100콜 무료</Pill>
+        <Pill>가입·카드 등록 없음</Pill>
+        <Pill>설치 없이 URL 한 줄</Pill>
+        <Pill>더 쓰려면 본인 키로</Pill>
+      </div>
 
       {/* ── 연결하기 ─────────────────────────────────────────────── */}
       <Section title="MCP 연결하기">
@@ -293,6 +309,35 @@ export default async function Home() {
         </a>
       </p>
     </main>
+  );
+}
+
+function Pill({ children, strong }: { children: React.ReactNode; strong?: boolean }) {
+  return (
+    <span
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 7,
+        background: strong ? "#fff7ed" : "#f7f7f6",
+        color: strong ? C.accent : C.muted,
+        border: `1px solid ${strong ? "#fed7aa" : C.line}`,
+        borderRadius: 999,
+        padding: "5px 13px 5px 11px",
+        fontSize: 14,
+        fontWeight: strong ? 700 : 500,
+      }}
+    >
+      <span
+        style={{
+          width: 5,
+          height: 5,
+          borderRadius: "50%",
+          background: strong ? C.accent : "#a8a29e",
+        }}
+      />
+      {children}
+    </span>
   );
 }
 
