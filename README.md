@@ -1,7 +1,7 @@
 # Solar Human Proofreader
 
 **사람 편집자가 빨간 펜으로 손본 원고를 돌려주는 MCP 서버.**
-한국어 원고를 읽기 쉽게 교정합니다. Upstage **Solar Pro 4**가 문장을 손보고,
+한국어 원고를 읽기 쉽게 교정합니다. [Upstage **Solar Pro 4**](https://www.upstage.ai)가 문장을 손보고,
 사실·인용·문체가 그대로인지는 코드가 판정합니다. 내용은 더하지도 빼지도 않습니다.
 
 Vercel에 올려 쓰는 서버사이드 MCP입니다. 하루 **100콜까지 무료**, 그 이상은

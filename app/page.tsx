@@ -54,8 +54,16 @@ export default async function Home() {
         손본 원고를 돌려드립니다.
       </h1>
       <p style={{ fontSize: 18, color: C.muted, marginTop: 0 }}>
-        한국어 원고를 읽기 쉽게 교정하는 MCP 서버입니다. Upstage <strong>Solar Pro 4</strong>가
-        문장을 손보고, 사실·인용·말투가 그대로인지는 코드가 판정합니다. 내용은 더하지도 빼지도
+        한국어 원고를 읽기 쉽게 교정하는 MCP 서버입니다.{" "}
+        <a
+          href="https://www.upstage.ai"
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}
+        >
+          Upstage <strong>Solar Pro 4</strong>
+        </a>
+        가 문장을 손보고, 사실·인용·말투가 그대로인지는 코드가 판정합니다. 내용은 더하지도 빼지도
         않습니다.
       </p>
 
