@@ -13,9 +13,10 @@ import { registerTools } from "@/lib/tools";
 import { withRequestContext } from "@/lib/context";
 
 export const runtime = "nodejs";
-// 정독 교정은 Solar를 세 번 부른다. Vercel Hobby는 60초로 잘리므로 그 경우
-// depth를 standard 이하로 쓰거나 Pro(최대 300초)로 올려야 한다.
-export const maxDuration = 300;
+// 정독 교정은 Solar를 세 번(재교정까지 네 번) 부르고 호출당 120초 × 재시도 1회라
+// 최악이면 300초를 넘긴다. Pro/Enterprise는 800초까지 올릴 수 있다.
+// Hobby는 300초가 상한이라 그 경우 depth를 standard 이하로 써야 한다.
+export const maxDuration = 800;
 
 const handler = createMcpHandler(
   (server) => {
