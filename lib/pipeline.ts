@@ -128,6 +128,10 @@ export async function proofread(opts: ProofreadOptions): Promise<ProofreadResult
   const strength: Strength =
     opts.strength ?? (depth === "light" ? "보수" : depth === "deep" ? "적극" : "기본");
   const genre: Genre = opts.genre ?? "자동";
+  // deep은 통독·교정·롤백·보정으로 콜을 최대 네 번 쓴다. 호출당 120초 타임아웃에
+  // 재시도까지 붙으면 함수 상한(800초)을 넘긴다. 120초를 넘긴 호출은 다시 불러도
+  // 대개 또 넘기므로, 깊은 교정에서는 재시도를 끄고 상한 안에 가둔다.
+  const retries = depth === "deep" ? 0 : 1;
 
   await precheck(provider, plannedCalls(depth));
 
@@ -143,7 +147,7 @@ export async function proofread(opts: ProofreadOptions): Promise<ProofreadResult
         { role: "system", content: p.system },
         { role: "user", content: p.user },
       ],
-      { temperature: 0.3, maxTokens: 2500 },
+      { temperature: 0.3, maxTokens: 2500, retries },
     );
     budget.record(res);
     diagnosis = res.text.trim();
@@ -167,7 +171,7 @@ export async function proofread(opts: ProofreadOptions): Promise<ProofreadResult
         { role: "system", content: p.system },
         { role: "user", content: p.user },
       ],
-      { temperature: 0.4, maxTokens: Math.min(32000, Math.ceil(text.length * 1.6) + 2000) },
+      { temperature: 0.4, maxTokens: Math.min(32000, Math.ceil(text.length * 1.6) + 2000), retries },
     );
     budget.record(res);
     return parsePolished(res.text);
@@ -248,7 +252,7 @@ export async function proofread(opts: ProofreadOptions): Promise<ProofreadResult
           { role: "system", content: p.system },
           { role: "user", content: p.user },
         ],
-        { temperature: 0.25, maxTokens: Math.min(32000, Math.ceil(text.length * 1.6) + 2000) },
+        { temperature: 0.25, maxTokens: Math.min(32000, Math.ceil(text.length * 1.6) + 2000), retries },
       );
       budget.record(res);
       const fixed = parsePolished(res.text);
