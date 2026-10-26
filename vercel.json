@@ -1,8 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "functions": {
-    "app/api/mcp/route.ts": {
-      "maxDuration": 300
+  "framework": null,
+  "installCommand": "true",
+  "buildCommand": "mkdir -p .vercel-empty && echo 'Vercel only proxies to human-proofreader-mcp.toy.x.upstage.ai' > .vercel-empty/_proxy-only.txt",
+  "outputDirectory": ".vercel-empty",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "https://human-proofreader-mcp.toy.x.upstage.ai/$1"
     }
-  }
+  ]
 }
