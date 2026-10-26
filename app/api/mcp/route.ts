@@ -11,6 +11,7 @@ import { createMcpHandler } from "mcp-handler";
 import { clientKeyFrom } from "@/lib/quota";
 import { registerTools } from "@/lib/tools";
 import { withRequestContext } from "@/lib/context";
+import { withSseKeepalive } from "@/lib/keepalive";
 
 export const runtime = "nodejs";
 // 정독 교정은 Solar를 세 번 부른다. Vercel Hobby는 60초로 잘리므로 그 경우
@@ -39,7 +40,8 @@ const handler = createMcpHandler(
 
 async function route(request: Request): Promise<Response> {
   const ctx = { headers: request.headers, clientKey: clientKeyFrom(request.headers) };
-  return withRequestContext(ctx, () => handler(request));
+  const res = await withRequestContext(ctx, () => handler(request));
+  return withSseKeepalive(res);
 }
 
 export { route as GET, route as POST, route as DELETE };
